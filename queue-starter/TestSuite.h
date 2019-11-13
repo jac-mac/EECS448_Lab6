@@ -3,7 +3,7 @@
 
 #include "Queue.h"
 
-class TestSuite
+class TestSuite : public Queue
 {
   private:
   Queue* testQ;
@@ -11,6 +11,8 @@ class TestSuite
 
   public:
   TestSuite();
+
+  bool testisEmpty();
 
 };
 #endif
