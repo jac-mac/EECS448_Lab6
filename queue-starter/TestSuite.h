@@ -13,6 +13,8 @@ class TestSuite : public Queue
   TestSuite();
 
   bool testisEmpty();
+  bool testEnqueue();
+  bool testDequeue();
 
 };
 #endif
