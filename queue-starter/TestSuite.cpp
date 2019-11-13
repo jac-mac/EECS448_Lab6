@@ -2,28 +2,45 @@
 
 TestSuite::TestSuite()
 {
-  testQ = new Queue();
+  //testQ = new Queue();
 }
 
-bool TestSuite::testisEmpty()
+bool TestSuite::testIsEmpty(Queue q)
 {
-  return(this->testQ->isEmpty() && m_front == nullptr && m_back == nullptr);
+  return(q.isEmpty() && m_front == nullptr && m_back == nullptr);
 }
 
-void TestSuite::testEnqueue()
+bool TestSuite::testEnqueueAfterEmpty()
 {
-  this->testQ->enqueue(1);
-  //return(m_front && m_back != nullptr);
+  if(m_front == m_back)
+    return true;
+  else
+    return false;
 }
 
-void TestSuite::testDequeue()
+bool TestSuite::testEnqueueAfterNotEmpty()
+{
+  if(m_front != m_back)
+    return true;
+  else
+    return false;
+}
+
+bool TestSuite::testDequeue(Queue q)
 {
   try
   {
-    this->testQ->dequeue();
+    q.dequeue();
+    return true;
   }
   catch(std::runtime_error rte)
   {
     rte.what();
+    return false;
   }
 }
+
+// int TestSuite::testPeekFront()
+// {
+//
+// }

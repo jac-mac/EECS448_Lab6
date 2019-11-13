@@ -6,15 +6,17 @@
 class TestSuite : public Queue
 {
   private:
-  Queue* testQ;
+  //Queue* testQ;
 
 
   public:
   TestSuite();
 
-  bool testisEmpty();
-  bool testEnqueue();
-  bool testDequeue();
+  bool testIsEmpty(Queue q);
+  bool testEnqueueAfterEmpty();
+  bool testEnqueueAfterNotEmpty();
+  bool testDequeue(Queue q);
+  //int testPeekFront();
 
 };
 #endif
