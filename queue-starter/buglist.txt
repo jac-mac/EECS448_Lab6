@@ -1,2 +1,6 @@
 Bug 1: Queue::isEmpty doesn't ever get switched to false. However I think this is due to
 the Queue::enqueue function not moving pointers around correctly.
+
+Bug 2: Queue::enqueue doesn't enqueue correctly when non-empty. Enqueue probably only has a branch
+telling it what to do when the queue is empty. Pointers m_front and m_back should never be equal after
+2 or more queues but they are here.

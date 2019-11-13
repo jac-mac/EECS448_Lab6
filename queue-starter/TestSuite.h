@@ -15,7 +15,8 @@ class TestSuite : public Queue
   bool testIsEmpty(Queue q);
   bool testEnqueueAfterEmpty();
   bool testEnqueueAfterNotEmpty();
-  bool testDequeue(Queue q);
+  bool testDequeueAfterNotEmpty(Queue q);
+  bool testDequeueAfterEmpty();
   //int testPeekFront();
 
 };

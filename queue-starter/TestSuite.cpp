@@ -26,18 +26,22 @@ bool TestSuite::testEnqueueAfterNotEmpty()
     return false;
 }
 
-bool TestSuite::testDequeue(Queue q)
+bool TestSuite::testDequeueAfterNotEmpty(Queue q)
 {
   try
   {
     q.dequeue();
-    return true;
   }
   catch(std::runtime_error rte)
   {
-    rte.what();
     return false;
   }
+  return true;
+}
+
+bool TestSuite::testDequeueAfterEmpty()
+{
+  
 }
 
 // int TestSuite::testPeekFront()
