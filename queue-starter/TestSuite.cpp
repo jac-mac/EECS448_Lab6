@@ -1,4 +1,4 @@
-#include "testSuite.h"
+#include "TestSuite.h"
 #include <iostream>
 
 TestSuite::TestSuite()
@@ -8,9 +8,9 @@ TestSuite::TestSuite()
 
 bool TestSuite::testEmpty()
 {
-  if(testq->isEmpty())
+  if(testQ->isEmpty())
      return true;
-  
+
   return false;
 }
 
@@ -23,7 +23,7 @@ bool TestSuite::testPeek(int num)
 {
   if(testQ->peekFront() == num)
     return true;
-  
+
   return false;
 }
 
