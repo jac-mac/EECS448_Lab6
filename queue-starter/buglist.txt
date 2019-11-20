@@ -1,6 +1,9 @@
-Bug 1: Queue::isEmpty doesn't ever get switched to false. However I think this is due to
-the Queue::enqueue function not moving pointers around correctly.
+There seems to either be a problem with enqueueing where you enqueue to the FRONT of a Queue instead of the back and dequeue and peek work normally where they both peek the FRONT of the Queue.
 
-Bug 2: Queue::enqueue doesn't enqueue correctly when non-empty. Enqueue probably only has a branch
-telling it what to do when the queue is empty. Pointers m_front and m_back should never be equal after
-2 or more queues but they are here.
+OR 
+
+Enqueue works correctly in that enqueue enqueues to the BACK of a Queue, but dequeue and peek remove and returns values from the BACK of a Queue.
+
+I'm not sure how to narrow the problem down more than this, but what I know is that dequeue and peek remove and return the most recent enqueue. Whether this is because dequeue and peek look at the back of the Queue or if it's because enqueue adds to the front of the Queue I have no idea.
+
+isEmpty seems to be functioning normally.
