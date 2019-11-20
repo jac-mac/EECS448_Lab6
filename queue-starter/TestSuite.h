@@ -3,21 +3,19 @@
 
 #include "Queue.h"
 
-class TestSuite : public Queue
+class TestSuite
 {
   private:
-  //Queue* testQ;
-
-
+  Queue* testQ;
+  
+  
   public:
   TestSuite();
-
-  bool testIsEmpty(Queue q);
-  bool testEnqueueAfterEmpty();
-  bool testEnqueueAfterNotEmpty();
-  bool testDequeueAfterNotEmpty(Queue q);
-  bool testDequeueAfterEmpty();
-  //int testPeekFront();
-
+  
+  bool testEmpty();
+  void qEnqueue(int num);
+  void qDequeue();
+  bool testPeek(int num);
+  bool testDequeue();
 };
 #endif
