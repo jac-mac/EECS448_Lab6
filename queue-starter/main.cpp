@@ -9,99 +9,133 @@
 #include "Queue.h"
 #include "TestSuite.h"
 
-
-bool testEmpty(Queue q, TestSuite t);
-void test1(Queue q, TestSuite test);
-
-bool testEAE(Queue q, TestSuite t);
-void test2(Queue q, TestSuite test);
-
-bool testEANE(Queue q, TestSuite t);
-void test3(Queue q, TestSuite test);
-
-bool testNotEmpty(Queue q, TestSuite t);
-void test4(Queue q, TestSuite test);
+void test1(TestSuite* t);
+void test2(TestSuite* t);
+void test3(TestSuite* t, int num);
+void test4(TestSuite* t, int num);
+void test5(TestSuite* t, int num);
+void test6(TestSuite* t, int num);
+void test7(TestSuite* t, int num);
+void test8(TestSuite* t);
+//
 
 int main()
 {
-	Queue q;
-	TestSuite test;
-
-	test1(q, test);
-	test2(q, test);
-	test3(q, test);
-	test4(q, test);
-
-
+	TestSuite* test = new TestSuite;
+	
+	int val = 1;
+	
+	test1(test);
+	test->qEnqueue(val);
+	test2(test);
+	test3(test, val);
+	test->qEnqueue(2);
+	test4(test, val);
+	
+	val = 3;
+	test->qEnqueue(val);
+	test5(test, val);
+	
+	test->qEnqueue(4);
+	val = 2;
+	test6(test, val);
+	test7(test, 3);
+	
+	test->qDequeue();
+	test->qDequeue();
+	test->qDequeue();
+	
+	test8(test);
+	test->qEnqueue(1);
+	test->qEnqueue(2);
+	
+	
+	
+	
 	return(0);
 }
 
-
-bool testEmpty(Queue q, TestSuite t)
+void test1(TestSuite* t)
 {
-	if(t.testIsEmpty(q))
-		return true;
-	else
-		return false;
-}
-
-void test1(Queue q, TestSuite test)
-{
-	std::cout << "Test 1: Newly created queue is empty: ";
-	if(testEmpty(q, test))
+	std::cout << "Test 1: Newly created Queue is empty: ";
+	if(t->testEmpty())
 		std::cout << "PASSED\n";
 	else
 		std::cout << "FAILED\n";
 }
 
-bool testEAE(Queue q, TestSuite t)
+void test2(TestSuite* t)
 {
-	q.enqueue(1);
-	if(t.testEnqueueAfterEmpty())
-		return true;
-	else
-		return false;
-}
-
-void test2(Queue q, TestSuite test)
-{
-	std::cout << "Test 2: An empty queue enqueues correctly: ";
-	if(testEAE(q, test))
+	std::cout << "Test 2: Queue is NOT empty after an enqueue: ";
+	if(t->testEmpty())
 		std::cout << "PASSED\n";
 	else
 		std::cout << "FAILED\n";
 }
 
-bool testEANE(Queue q, TestSuite t)
+void test3(TestSuite* t, int num)
 {
-	q.enqueue(1);
-	if(t.testEnqueueAfterNotEmpty())
-		return true;
-	else
-		return false;
-}
-
-void test3(Queue q, TestSuite test)
-{
-	std::cout << "Test 3: A non-empty queue enqueues correctly: ";
-	if(testEANE(q, test))
+	std::cout << "Test 3: Peeking a Queue of one item returns that item: ";
+	if(t->testPeek(num))
 		std::cout << "PASSED\n";
 	else
 		std::cout << "FAILED\n";
 }
 
-bool testNotEmpty(Queue q, TestSuite t)
+void test4(TestSuite* t, int num)
 {
-	if(!t.testIsEmpty(q))
-		return true;
+	std::cout << "Test 4: Peeking a Queue of more than one items returns the FRONT value: ";
+	if(t->testPeek(num))
+		std::cout << "PASSED\n";
 	else
-		return false;
+		std::cout << "FAILED\n";
 }
 
-void test4(Queue q, TestSuite test)
+void test5(TestSuite* t, int num)
 {
-	std::cout << "Test 4: A Queue is NOT empty after enqueues: ";
-	if(testNotEmpty(q, test))
+	std::cout << "Test 5: Peeking a Queue returns the BACK value: ";
+	if(t->testPeek(num))
+		std::cout << "PASSED\n";
+	else
+		std::cout << "FAILED\n";
+}
+
+void test6(TestSuite* t, int num)
+{
+	std::cout << "Test 6: Dequeueing from a Queue removes the FRONT item: ";
+	if(t->testDequeue())
+	{
+		if(t->testPeek(num))
+		{
+			std::cout << "PASSED\n";
+		}
+		else
+		{
+			std::cout << "FAILED*\n";
+		}	
+	}
+	else
+		std::cout << "FAILED\n";
+}
+
+void test7(TestSuite* t, int num)
+{
+	std::cout << "Test 7: Dequeueing froma a Queue removes the BACK item: ";
+	
+	if(t->testPeek(num))
+	{
+		std::cout << "PASSED\n";
+	}
+	else
+	{
+		std::cout << "FAILED*\n";
+	}
+}
+
+void test8(TestSuite* t)
+{
+	std::cout << "Test 8: Dequeueing all items from a Queue makes it emtpy: ";
+	if(t->testEmpty())
 		std::cout << "PASSED\n";
 	else
 		std::cout << "FAILED\n";
