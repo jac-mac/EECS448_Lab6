@@ -1,50 +1,53 @@
-#include "TestSuite.h"
+#include "testSuite.h"
+#include <iostream>
 
 TestSuite::TestSuite()
 {
-  //testQ = new Queue();
+  testQ = new Queue;
 }
 
-bool TestSuite::testIsEmpty(Queue q)
+bool TestSuite::testEmpty()
 {
-  return(q.isEmpty() && m_front == nullptr && m_back == nullptr);
+  if(testq->isEmpty())
+     return true;
+  
+  return false;
 }
 
-bool TestSuite::testEnqueueAfterEmpty()
+void TestSuite::qEnqueue(int num)
 {
-  if(m_front == m_back)
+  testQ->enqueue(num);
+}
+
+bool TestSuite::testPeek(int num)
+{
+  if(testQ->peekFront() == num)
     return true;
-  else
-    return false;
+  
+  return false;
 }
 
-bool TestSuite::testEnqueueAfterNotEmpty()
-{
-  if(m_front != m_back)
-    return true;
-  else
-    return false;
-}
-
-bool TestSuite::testDequeueAfterNotEmpty(Queue q)
+bool TestSuite::testDequeue()
 {
   try
   {
-    q.dequeue();
+    testQ->dequeue();
+    return true;
   }
-  catch(std::runtime_error rte)
+  catch(...)
   {
     return false;
   }
-  return true;
 }
 
-bool TestSuite::testDequeueAfterEmpty()
+void TestSuite::qDequeue()
 {
-  
+  try
+  {
+    testQ->dequeue();
+  }
+  catch(std::runtime_error& rte)
+  {
+    rte.what();
+  }
 }
-
-// int TestSuite::testPeekFront()
-// {
-//
-// }
